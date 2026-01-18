@@ -2,10 +2,10 @@ import { AppBar, Avatar, IconButton, Toolbar, Tooltip, Typography } from '@mui/m
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
 
-export default function Navbar({onMenuClick}) {
-    const username = localStorage.getItem('user') || 'Student'
-     
-
+const Navbar = ({onMenuClick}) => {
+    const username = localStorage.getItem('user') || 'Student';
+    const avatarUrl = `https://i.pravatar.cc/150?u=${username}`;
+    
     return (
         <AppBar position='static'>
             <Toolbar>
@@ -16,9 +16,12 @@ export default function Navbar({onMenuClick}) {
                     Dashboard
                 </Typography>
                 <Tooltip title={'Username'}>
-                    <Avatar>{username.charAt(0).toUpperCase()}</Avatar>
+                    {/* <Avatar>{username.charAt(0).toUpperCase()}</Avatar> */}
+                    <Avatar src={avatarUrl} />
                 </Tooltip>
             </Toolbar>
         </AppBar>
     );
-}
+};
+
+export default Navbar;

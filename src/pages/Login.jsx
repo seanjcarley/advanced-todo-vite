@@ -1,22 +1,24 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Container, TextField, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 
-export default function Login() {
+const Login = () => {
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = () => {
         // simulate login
         if (username) {
-            localStorage.setItem('user', username);
+            login(username);
             navigate('/dashboard');
         }
-    }
+    };
 
     return (
-        <Container maxWidth='sm' style={{ marginTop: '100px'}}>
+        <Container maxWidth='sm' sx={{ mt: 10 }}>
             <Typography variant='h4' gutterBottom>
                 Login
             </Typography>
@@ -28,11 +30,14 @@ export default function Login() {
             />
             <Button
                 variant='contained'
+                sx={{ mt: 2 }}
                 onClick={handleLogin}
                 fullWidth
             >
                 Login
             </Button>
         </Container>
-  )
-}
+  );
+};
+
+export default Login;
